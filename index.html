@@ -11,7 +11,7 @@
     <p>currently a console application...</p>
     <br>
     <br>
-    <p>table for our list of books</p>
+    <p>Table</p>
     <table>
         <tbody class="book-list">
             <tr>
@@ -21,5 +21,24 @@
             </tr>
         </tbody>
     </table>
+
+    <button class="btn open-form">Add New Book</button>
+    <dialog>
+        <form action="">
+            <label for="title">Title:</label>
+            <input id="title" type="text">
+            <label for="author">Author:</label>
+            <input id="author" type="text">
+            <fieldset>
+                <legend>Book Status:</legend>
+                <label for="read">Read</label>
+                <input id="read" type="radio" name="status" value="Read">
+                <label for="not-read">Not Read</label>
+                <input id="not-read" type="radio" name="status" value="Not Read">
+            </fieldset>
+            <button class="btn add-book-btn">Add Book</button>
+        </form>
+        <button class="btn close-menu-btn">Close Menu</button>
+    </dialog>
 </body>
 </html>
