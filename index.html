@@ -8,10 +8,19 @@
     <title>Library Project</title>
 </head>
 <body>
-    <p>currently a console application...</p>
-    <br>
-    <br>
-    <p>Table</p>
+    <div class="header">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>bookshelf</title><path d="M9 3V18H12V3H9M12 5L16 18L19 17L15 4L12 5M5 5V18H8V5H5M3 19V21H21V19H3Z" /></svg>
+        <h1>My Library</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>bookshelf</title><path d="M9 3V18H12V3H9M12 5L16 18L19 17L15 4L12 5M5 5V18H8V5H5M3 19V21H21V19H3Z" /></svg>
+    </div>
+    <div class="menu">
+        <button class="btn open-form">Add New Book</button>
+        <input type="search" placeholder="Find your book...">
+    </div>
+    <!-- <div class="header-btn"><button class="btn open-form">Add New Book</button></div> -->
+    <!-- <div class="search">
+        <input type="search" placeholder="Find your book...">
+    </div> -->
     <table>
         <tbody class="book-list">
             <tr>
@@ -19,13 +28,10 @@
                 <th>Title</th>
                 <th>Author</th>
                 <th>Status</th>
-                <!-- <th>Remove</th> -->
-                <!-- <th>Update</th> -->
             </tr>
         </tbody>
     </table>
 
-    <button class="btn open-form">Add New Book</button>
     <dialog>
         <form action="">
             <label for="title">Title:</label>
