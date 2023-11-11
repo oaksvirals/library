@@ -6,6 +6,14 @@ function Book(title, author, status) {
     this.status = status;
 };
 
+Book.prototype.changeStatus = function() {
+    if (this.status === 'Read') {
+        this.status = 'Not Read';
+    } else if (this.status === 'Not Read') {
+        this.status = 'Read'
+    };
+};
+
 const addBookToLibrary = (title, author, status) => myLibrary.push(new Book(title, author, status));
 
 // dummy books added to library for testing
@@ -24,6 +32,7 @@ function updateTable() {
         const makeTdAuthor = document.createElement('td');
         const makeTdStatus = document.createElement('td');
         const removeButton = document.createElement('button');
+        const changeStatusButton = document.createElement('button');
     
         // create new row
         selectBookList.appendChild(makeTr);
@@ -52,13 +61,26 @@ function updateTable() {
         targetRow.appendChild(removeButton);
         removeButton.setAttribute('class', 'btn remove-book');
         removeButton.setAttribute('value', i);
-        removeButton.textContent = 'Delete';
+        removeButton.textContent = 'Delete Book';
 
         removeButton.addEventListener('click', () => {
             myLibrary.splice(removeButton.value, 1);
             rebuildTable();
             updateTable();
         });
+
+        // change status button
+        targetRow.appendChild(changeStatusButton);
+        changeStatusButton.setAttribute('class', 'btn change-status');
+        changeStatusButton.setAttribute('value', i);
+        changeStatusButton.textContent = 'Change Status';
+
+        changeStatusButton.addEventListener('click', () => {
+            myLibrary[i].changeStatus();
+            rebuildTable();
+            updateTable();
+        });
+
     };
 };
 
@@ -126,6 +148,7 @@ function rebuildTable() {
     const author = document.createElement('th');
     const status = document.createElement('th');
     const remove = document.createElement('th');
+    const changeStatus = document.createElement('th');
 
     table.appendChild(tbody);
     tbody.appendChild(tr);
@@ -138,8 +161,10 @@ function rebuildTable() {
     author.textContent = 'Author';
     topRow.appendChild(status);
     status.textContent = 'Status';
-    topRow.appendChild(remove);
-    remove.textContent = 'Remove';
+    // topRow.appendChild(remove);
+    // remove.textContent = 'Remove';
+    // topRow.appendChild(changeStatus);
+    // changeStatus.textContent = 'Update'
 
     tbody.setAttribute('class', 'book-list');
 };
