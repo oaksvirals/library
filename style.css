@@ -101,6 +101,10 @@ th {
 td {
     /* border-bottom: 1px solid black; */
     text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 1px;
 }
 
 td, th {
@@ -138,4 +142,66 @@ tr:hover {
 .change-status:hover {
     transform: scale(0.95);
     cursor: pointer;
+}
+
+dialog {
+    margin: 200px auto;
+}
+
+dialog::backdrop {
+    background-color: rgb(222, 215, 254, 0.60);
+}
+
+form {
+    display: grid;
+    gap: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+form p {
+    color: var(--red);
+    font-size: 14px;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+form #author {
+    margin-bottom: 25px;
+}
+
+form input {
+    border-radius: 8px;
+    outline: none;
+    padding: 5px;
+    border: 2px solid var(--accent)
+}
+
+form button {
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.add-book-btn {
+    border: 2px solid var(--accent);
+    background-color: var(--accent);
+    color: var(--white);
+    font-weight: bold;
+}
+
+.close-menu-btn {
+    border: 2px solid var(--red);
+    background-color: var(--red);
+    color: var(--white);
+    font-weight: bold;
+}
+
+.add-book-btn:hover,
+.close-menu-btn:hover {
+    transform: scale(0.95);
+    cursor: pointer;
+}
+
+form legend, form label {
+    font-weight: bold;
 }

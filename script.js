@@ -14,7 +14,7 @@ Book.prototype.changeStatus = function() {
     };
 };
 
-const addBookToLibrary = (title, author, status) => myLibrary.push(new Book(title, author, status));
+const addBookToLibrary = (title, author, status) => myLibrary.unshift(new Book(title, author, status));
 
 // dummy books added to library for testing
 addBookToLibrary('A Book', 'Wesley Oaks', 'Read');
@@ -104,9 +104,21 @@ const getForm = document.querySelector('form');
 
 openFormBtn.addEventListener('click', () => {
     formMenu.showModal();
+    formMenu.style.backgroundColor = 'var(--white)';
+    formMenu.style.border = '3px solid var(--accent)';
+    formMenu.style.borderRadius = '8px';
+    formMenu.style.padding = '25px';
+    // formMenu.style.display = 'grid';
+    // formMenu.style.gridTemplateColumns = '1fr';
+    // formMenu.style.gridTemplateRows = '1fr 1fr 1fr 1fr 1fr'
+    // formMenu.style.display = 'flex';
+    // formMenu.style.flexDirection = 'column';
+    // formMenu.style.justifyContent = 'center';
+    // formMenu.style.alignItems = 'center';
 });
 
 closeFormBtn.addEventListener('click', () => {
+    formMenu.style.display = '';
     formMenu.close();
 });
 
@@ -129,10 +141,12 @@ addBookBtn.addEventListener('click', () => {
     };
 
     // search if title already exists before adding it
+    const alreadyExistNotification = document.querySelector('form p');
     const checkAlreadyExists = myLibrary.map(book => book.title).indexOf(title.value);
 
     if (checkAlreadyExists >= 0 || title.value === '' || author.value === '') {
         console.log('Title exists or missing required fields'); // come back to add functionality here
+        alreadyExistNotification.style.visibility = 'visible';
     } else {
         addBookToLibrary(title.value, author.value, read);
         rebuildTable();
@@ -140,6 +154,7 @@ addBookBtn.addEventListener('click', () => {
 
         title.value = '';
         author.value = '';
+        alreadyExistNotification.style.visibility = 'hidden';
 
         formMenu.close();
     };
