@@ -32,6 +32,8 @@ function updateTable() {
         const makeTdTitle = document.createElement('td');
         const makeTdAuthor = document.createElement('td');
         const makeTdStatus = document.createElement('td');
+        const removeButtonTd = document.createElement('td');
+        const changeStatusButtonTd = document.createElement('td');
         const removeButton = document.createElement('button');
         const changeStatusButton = document.createElement('button');
     
@@ -62,8 +64,9 @@ function updateTable() {
         let targetStatus = document.getElementById(i + ' status');
         targetStatus.textContent = myLibrary[i]['status'];
 
-        // remove button
-        targetRow.appendChild(removeButton);
+        // add remove button td
+        targetRow.appendChild(removeButtonTd);
+        removeButtonTd.appendChild(removeButton);
         removeButton.setAttribute('class', 'btn remove-book');
         removeButton.setAttribute('value', i);
         removeButton.textContent = 'Delete Book';
@@ -74,8 +77,9 @@ function updateTable() {
             updateTable();
         });
 
-        // change status button
-        targetRow.appendChild(changeStatusButton);
+        // add change status td
+        targetRow.appendChild(changeStatusButtonTd);
+        changeStatusButtonTd.appendChild(changeStatusButton);
         changeStatusButton.setAttribute('class', 'btn change-status');
         changeStatusButton.setAttribute('value', i);
         changeStatusButton.textContent = 'Change Status';
@@ -169,10 +173,10 @@ function rebuildTable() {
     author.textContent = 'Author';
     topRow.appendChild(status);
     status.textContent = 'Status';
-    // topRow.appendChild(remove);
-    // remove.textContent = 'Remove';
-    // topRow.appendChild(changeStatus);
-    // changeStatus.textContent = 'Update'
+    topRow.appendChild(remove);
+    remove.textContent = 'Remove';
+    topRow.appendChild(changeStatus);
+    changeStatus.textContent = 'Update'
 
     tbody.setAttribute('class', 'book-list');
 };

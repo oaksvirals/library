@@ -1,8 +1,11 @@
 :root {
     --white: #fafafa;
+    --offwhite: #e5e5e5;
     --accent: #a78bfa;
-    --red: #ef4444;
-    --green: #22c55e;
+    --accent2: #7c3aed;
+    --accent3: #ddd6fe;
+    --red: #fb7185;
+    --green: #34d399;
 }
 
 * {
@@ -17,13 +20,14 @@ html {
 }
 
 body {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     background: var(--white);
     width: 1120px;
+    height: 100vw;
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 100px 25px repeat(10, 1fr);
+    grid-template-rows: 100px 25px 50px repeat(9, 1fr);
     gap: 32px;
 }
 
@@ -66,12 +70,6 @@ body {
     outline: none;
 }
 
-/* .header-btn {
-    grid-column: 2 / 4;
-    grid-row: 2 / 3;
-    margin-left: 10px;
-} */
-
 .open-form {
     padding: 8px;
     color: var(--white);
@@ -87,18 +85,57 @@ body {
     cursor: pointer;
 }
 
-/* .search {
-    grid-column: 4 / 10;
+table {
+    /* border: 1px solid red; */
+    grid-column: 1 / -1;
+    grid-row: 3;
+    font-size: 18px;
 }
 
-.search input {
-    width: 100%;
+th {
+    padding-bottom: 20px;
+    font-size: 20px;
+    color: var(--accent2);
+}
+
+td {
+    /* border-bottom: 1px solid black; */
+    text-align: center;
+}
+
+td, th {
+    /* padding: 10px; */
+    width: 50px;
+    height: 50px;
+}
+
+tr:hover {
+    background-color: var(--accent3);
+}
+
+.remove-book, .change-status {
+    /* margin: 5px; */
     padding: 5px;
-} */
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    font-weight: bold;
+}
 
-table {
-    grid-column: 4 / -1;
-    grid-row-start: 4;
+.remove-book {
+    background-color: var(--red);
+}
 
-    /* place-self: center; */
+.remove-book:hover {
+    transform: scale(0.95);
+    cursor: pointer;
+}
+
+.change-status {
+    background-color: var(--green);
+}
+
+.change-status:hover {
+    transform: scale(0.95);
+    cursor: pointer;
 }
