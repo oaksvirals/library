@@ -28,6 +28,7 @@ function updateTable() {
         const selectBookList = document.querySelector('.book-list');
 
         const makeTr = document.createElement('tr');
+        const makeNum = document.createElement('td');
         const makeTdTitle = document.createElement('td');
         const makeTdAuthor = document.createElement('td');
         const makeTdStatus = document.createElement('td');
@@ -38,7 +39,11 @@ function updateTable() {
         selectBookList.appendChild(makeTr);
         makeTr.setAttribute('id', i);
         const targetRow = document.getElementById(i);
-    
+
+        // add number
+        targetRow.appendChild(makeNum);
+        makeNum.textContent = i + 1;
+
         // add title
         targetRow.appendChild(makeTdTitle);
         makeTdTitle.setAttribute('id', i + ' title');
@@ -122,8 +127,8 @@ addBookBtn.addEventListener('click', () => {
     // search if title already exists before adding it
     const checkAlreadyExists = myLibrary.map(book => book.title).indexOf(title.value);
 
-    if (checkAlreadyExists >= 0) {
-        console.log('This Title already exists and we cannot add it again.'); // come back to add functionality here
+    if (checkAlreadyExists >= 0 || title.value === '' || author.value === '') {
+        console.log('Title exists or missing required fields'); // come back to add functionality here
     } else {
         addBookToLibrary(title.value, author.value, read);
         rebuildTable();
@@ -131,9 +136,9 @@ addBookBtn.addEventListener('click', () => {
 
         title.value = '';
         author.value = '';
-    };
 
-    formMenu.close();
+        formMenu.close();
+    };
 });
 
 function rebuildTable() {
@@ -144,6 +149,7 @@ function rebuildTable() {
 
     const tbody = document.createElement('tbody');
     const tr = document.createElement('tr');
+    const number = document.createElement('th');
     const title = document.createElement('th');
     const author = document.createElement('th');
     const status = document.createElement('th');
@@ -155,6 +161,8 @@ function rebuildTable() {
     
     const topRow = document.querySelector('tr');
 
+    topRow.appendChild(number);
+    number.textContent = '#';
     topRow.appendChild(title);
     title.textContent = 'Title';
     topRow.appendChild(author);
