@@ -9,14 +9,12 @@ function Book(title, author, status) {
 const addBookToLibrary = (title, author, status) => myLibrary.push(new Book(title, author, status));
 
 // dummy books added to library for testing
-addBookToLibrary('abook', 'wesley oaks', 'read');
-addBookToLibrary('james bond', 'carl dickinson', 'not read');
-addBookToLibrary('indiana jones', 'james franco', 'not read');
+addBookToLibrary('A Book', 'Wesley Oaks', 'Read');
+addBookToLibrary('James Bond', 'Carl Dickinson', 'Not Read');
+addBookToLibrary('Indiana Jones', 'James Franco', 'Not Read');
 console.table(myLibrary);
 
-// loop myLibrary array and display each book on the page
-// const selectBookList = document.querySelector('.book-list');
-
+// initialize table data
 function updateTable() {
     for (let i = 0; i < myLibrary.length; i++) {
         const selectBookList = document.querySelector('.book-list');
@@ -25,6 +23,7 @@ function updateTable() {
         const makeTdTitle = document.createElement('td');
         const makeTdAuthor = document.createElement('td');
         const makeTdStatus = document.createElement('td');
+        const removeButton = document.createElement('button');
     
         // create new row
         selectBookList.appendChild(makeTr);
@@ -48,6 +47,18 @@ function updateTable() {
         makeTdStatus.setAttribute('id', i + ' status');
         let targetStatus = document.getElementById(i + ' status');
         targetStatus.textContent = myLibrary[i]['status'];
+
+        // remove button
+        targetRow.appendChild(removeButton);
+        removeButton.setAttribute('class', 'btn remove-book');
+        removeButton.setAttribute('value', i);
+        removeButton.textContent = 'Delete';
+
+        removeButton.addEventListener('click', () => {
+            myLibrary.splice(removeButton.value, 1);
+            rebuildTable();
+            updateTable();
+        });
     };
 };
 
@@ -81,16 +92,16 @@ addBookBtn.addEventListener('click', () => {
     let read = '';
 
     if (document.getElementById('read').checked) {
-        read = 'read';
+        read = 'Read';
     } else {
-        read = 'not read';
+        read = 'Not Read';
     };
 
     // search if title already exists before adding it
     const checkAlreadyExists = myLibrary.map(book => book.title).indexOf(title.value);
 
     if (checkAlreadyExists >= 0) {
-        console.log('This Title already exists and we cannot add it again.');
+        console.log('This Title already exists and we cannot add it again.'); // come back to add functionality here
     } else {
         addBookToLibrary(title.value, author.value, read);
         rebuildTable();
@@ -114,6 +125,7 @@ function rebuildTable() {
     const title = document.createElement('th');
     const author = document.createElement('th');
     const status = document.createElement('th');
+    const remove = document.createElement('th');
 
     table.appendChild(tbody);
     tbody.appendChild(tr);
@@ -126,6 +138,8 @@ function rebuildTable() {
     author.textContent = 'Author';
     topRow.appendChild(status);
     status.textContent = 'Status';
+    topRow.appendChild(remove);
+    remove.textContent = 'Remove';
 
     tbody.setAttribute('class', 'book-list');
 };
