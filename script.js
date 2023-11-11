@@ -15,11 +15,12 @@ addBookToLibrary('indiana jones', 'james franco', 'not read');
 console.table(myLibrary);
 
 // loop myLibrary array and display each book on the page
-const selectBookList = document.querySelector('.book-list');
+// const selectBookList = document.querySelector('.book-list');
 
 function updateTable() {
-
     for (let i = 0; i < myLibrary.length; i++) {
+        const selectBookList = document.querySelector('.book-list');
+
         const makeTr = document.createElement('tr');
         const makeTdTitle = document.createElement('td');
         const makeTdAuthor = document.createElement('td');
@@ -68,6 +69,12 @@ closeFormBtn.addEventListener('click', () => {
 });
 
 addBookBtn.addEventListener('click', preventDefault, false);
+
+function preventDefault(event) {
+    event.preventDefault();
+};
+
+// Add New Book Button
 addBookBtn.addEventListener('click', () => {
     const title = document.querySelector('#title');
     const author = document.querySelector('#author');
@@ -79,19 +86,46 @@ addBookBtn.addEventListener('click', () => {
         read = 'not read';
     };
 
-    // addBookToLibrary(title.value, author.value, read);
-
+    // search if title already exists before adding it
     const checkAlreadyExists = myLibrary.map(book => book.title).indexOf(title.value);
 
     if (checkAlreadyExists >= 0) {
         console.log('This Title already exists and we cannot add it again.');
     } else {
         addBookToLibrary(title.value, author.value, read);
+        rebuildTable();
+        updateTable();
+
+        title.value = '';
+        author.value = '';
     };
 
-    // formMenu.close();
+    formMenu.close();
 });
 
-function preventDefault(event) {
-    event.preventDefault();
+function rebuildTable() {
+    const selectBookList = document.querySelector('.book-list');
+    selectBookList.remove();
+
+    const table = document.querySelector('table');
+
+    const tbody = document.createElement('tbody');
+    const tr = document.createElement('tr');
+    const title = document.createElement('th');
+    const author = document.createElement('th');
+    const status = document.createElement('th');
+
+    table.appendChild(tbody);
+    tbody.appendChild(tr);
+    
+    const topRow = document.querySelector('tr');
+
+    topRow.appendChild(title);
+    title.textContent = 'Title';
+    topRow.appendChild(author);
+    author.textContent = 'Author';
+    topRow.appendChild(status);
+    status.textContent = 'Status';
+
+    tbody.setAttribute('class', 'book-list');
 };
