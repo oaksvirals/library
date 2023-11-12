@@ -16,12 +16,10 @@ Book.prototype.changeStatus = function() {
 
 const addBookToLibrary = (title, author, status) => myLibrary.unshift(new Book(title, author, status));
 
-// dummy books added to library for testing
-addBookToLibrary('A Book', 'Wesley Oaks', 'Read');
-addBookToLibrary('James Bond', 'Carl Dickinson', 'Not Read');
-addBookToLibrary('Indiana Jones', 'James Franco', 'Not Read');
-
-console.table(myLibrary)
+// dummy books added to library for filler
+addBookToLibrary('Clean Code', 'Robert Martin', 'Read');
+addBookToLibrary('The Pragmatic Programmer', 'Andrew Hunt and David Thomas', 'Read');
+addBookToLibrary('Cracking the Coding Interview', 'Gayle McDowell', 'Not Read');
 
 // initialize table data
 function updateTable(array) {
@@ -51,6 +49,7 @@ function updateTable(array) {
         // add title
         targetRow.appendChild(makeTdTitle);
         makeTdTitle.setAttribute('id', i + ' title');
+        makeTdTitle.style.width = '200px'
         let targetTitle = document.getElementById(i + ' title');
         targetTitle.textContent = array[i]['title'];
     
@@ -232,13 +231,3 @@ function rebuildTable() {
 
     tbody.setAttribute('class', 'book-list');
 };
-
-// search functionality
-// const searchBar = document.querySelector('.search');
-
-// searchBar.addEventListener('input', () => {
-//     let search = searchBar.value;
-//     console.log(search);
-
-//     let findBook = myLibrary.filter
-// });
