@@ -36,10 +36,6 @@ function updateTable() {
         const changeStatusButtonTd = document.createElement('td');
         const removeButton = document.createElement('button');
         const changeStatusButton = document.createElement('button');
-
-        // update search bar with book total
-        const search = document.querySelector('.search');
-        search.setAttribute('placeholder', 'Search through your library of ' + myLibrary.length + ' books...');
     
         // create new row
         selectBookList.appendChild(makeTr);
@@ -95,6 +91,15 @@ function updateTable() {
         });
 
     };
+
+        // update search bar with book total
+        const search = document.querySelector('.search');
+
+        if (myLibrary.length >= 1) {
+            search.setAttribute('placeholder', 'Search through your library of ' + myLibrary.length + ' books...');
+        } else {
+            search.setAttribute('placeholder', 'Try adding books to your library...');
+        };
 };
 
 updateTable();
