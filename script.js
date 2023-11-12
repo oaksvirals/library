@@ -49,13 +49,14 @@ function updateTable(array) {
         // add title
         targetRow.appendChild(makeTdTitle);
         makeTdTitle.setAttribute('id', i + ' title');
-        makeTdTitle.style.width = '200px'
+        makeTdTitle.style.textAlign = 'left'
         let targetTitle = document.getElementById(i + ' title');
         targetTitle.textContent = array[i]['title'];
     
         // add author
         targetRow.appendChild(makeTdAuthor);
         makeTdAuthor.setAttribute('id', i + ' author');
+        makeTdAuthor.style.textAlign = 'left'
         let targetAuthor = document.getElementById(i + ' author');
         targetAuthor.textContent = array[i]['author'];
     
