@@ -17,7 +17,7 @@
         <button class="btn open-form">Add New Book</button>
         <input class="search" type="search">
     </div>
-    <table>
+    <table id="library-table">
         <tbody class="book-list">
             <tr>
                 <th>#</th>
@@ -33,11 +33,11 @@
     <dialog>
         <form action="">
             <h2>-- New Book --</h2>
-            <label for="title">Title</label>
-            <input id="title" type="text" placeholder="" required>
-            <p>*This title already exists...</p>
-            <label for="author">Author</label>
-            <input id="author" type="text" required>
+            <p>*Title already exists or required info missing.</p>
+            <label for="title">*Title</label>
+            <input id="title" type="text" placeholder="">
+            <label for="author">*Author</label>
+            <input id="author" type="text">
             <fieldset>
                 <legend>Book Status</legend>
                 <label for="read">Read</label>

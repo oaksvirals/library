@@ -138,27 +138,6 @@ function updateTable(array) {
         };
 };
 
-// search bar function
-// function performSearch() {
-//     const thisSearch = document.querySelector('.search');
-//     let search = thisSearch.value.toLowerCase();
-//     let searchLibrary = [];
-
-//     for (let i = 0; i < myLibrary.length; i++) {
-//         if (search === myLibrary[i].title.toLowerCase()) {
-//             searchLibrary.push(myLibrary[i]);
-//             rebuildTable();
-//             updateTable(searchLibrary);
-//         }
-//     };
-
-//     if (search === '') {
-//         rebuildTable();
-//         updateTable(myLibrary);
-//         searchLibrary = [];
-//     }
-// };
-
 updateTable(myLibrary);
 
 // button to open form to submit new book information to our library
@@ -174,13 +153,6 @@ openFormBtn.addEventListener('click', () => {
     formMenu.style.border = '3px solid var(--accent)';
     formMenu.style.borderRadius = '8px';
     formMenu.style.padding = '25px';
-    // formMenu.style.display = 'grid';
-    // formMenu.style.gridTemplateColumns = '1fr';
-    // formMenu.style.gridTemplateRows = '1fr 1fr 1fr 1fr 1fr'
-    // formMenu.style.display = 'flex';
-    // formMenu.style.flexDirection = 'column';
-    // formMenu.style.justifyContent = 'center';
-    // formMenu.style.alignItems = 'center';
 });
 
 closeFormBtn.addEventListener('click', () => {
@@ -211,7 +183,6 @@ addBookBtn.addEventListener('click', () => {
     const checkAlreadyExists = myLibrary.map(book => book.title).indexOf(title.value);
 
     if (checkAlreadyExists >= 0 || title.value === '' || author.value === '') {
-        console.log('Title exists or missing required fields'); // come back to add functionality here
         alreadyExistNotification.style.visibility = 'visible';
     } else {
         addBookToLibrary(title.value, author.value, read);
