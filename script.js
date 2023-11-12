@@ -20,11 +20,13 @@ const addBookToLibrary = (title, author, status) => myLibrary.unshift(new Book(t
 addBookToLibrary('A Book', 'Wesley Oaks', 'Read');
 addBookToLibrary('James Bond', 'Carl Dickinson', 'Not Read');
 addBookToLibrary('Indiana Jones', 'James Franco', 'Not Read');
-console.table(myLibrary);
+
+console.table(myLibrary)
 
 // initialize table data
-function updateTable() {
-    for (let i = 0; i < myLibrary.length; i++) {
+function updateTable(array) {
+
+    for (let i = 0; i < array.length; i++) {
         const selectBookList = document.querySelector('.book-list');
 
         const makeTr = document.createElement('tr');
@@ -50,19 +52,19 @@ function updateTable() {
         targetRow.appendChild(makeTdTitle);
         makeTdTitle.setAttribute('id', i + ' title');
         let targetTitle = document.getElementById(i + ' title');
-        targetTitle.textContent = myLibrary[i]['title'];
+        targetTitle.textContent = array[i]['title'];
     
         // add author
         targetRow.appendChild(makeTdAuthor);
         makeTdAuthor.setAttribute('id', i + ' author');
         let targetAuthor = document.getElementById(i + ' author');
-        targetAuthor.textContent = myLibrary[i]['author'];
+        targetAuthor.textContent = array[i]['author'];
     
         // add status
         targetRow.appendChild(makeTdStatus);
         makeTdStatus.setAttribute('id', i + ' status');
         let targetStatus = document.getElementById(i + ' status');
-        targetStatus.textContent = myLibrary[i]['status'];
+        targetStatus.textContent = array[i]['status'];
 
         // add remove button td
         targetRow.appendChild(removeButtonTd);
@@ -72,9 +74,14 @@ function updateTable() {
         removeButton.textContent = 'Delete Book';
 
         removeButton.addEventListener('click', () => {
-            myLibrary.splice(removeButton.value, 1);
+            let find = array[removeButton.value].title;
+            let position = myLibrary.map(book => book.title).indexOf(find);
+
+            myLibrary.splice(position, 1);
             rebuildTable();
-            updateTable();
+            updateTable(myLibrary);
+
+            searchBar.value = '';
         });
 
         // add change status td
@@ -85,24 +92,74 @@ function updateTable() {
         changeStatusButton.textContent = 'Change Status';
 
         changeStatusButton.addEventListener('click', () => {
-            myLibrary[i].changeStatus();
+            let find = array[removeButton.value].title;
+            let position = myLibrary.map(book => book.title).indexOf(find);
+
+            myLibrary[position].changeStatus();
             rebuildTable();
-            updateTable();
+            updateTable(myLibrary);
+
+            searchBar.value = '';
         });
 
     };
 
         // update search bar with book total
-        const search = document.querySelector('.search');
+        const searchBar = document.querySelector('.search');
 
-        if (myLibrary.length >= 1) {
-            search.setAttribute('placeholder', 'Search through your library of ' + myLibrary.length + ' books...');
+        if (array.length >= 1) {
+            searchBar.setAttribute('placeholder', 'Search through your library of ' + array.length + ' books...');
         } else {
-            search.setAttribute('placeholder', 'Try adding books to your library...');
+            searchBar.setAttribute('placeholder', 'Try adding books to your library...');
+        };
+
+        searchBar.addEventListener('input', () => {
+            performSearch();
+        });
+
+        function performSearch() {
+            const thisSearch = document.querySelector('.search');
+            let search = thisSearch.value.toLowerCase();
+            let searchLibrary = [];
+        
+            for (let i = 0; i < myLibrary.length; i++) {
+                if (search === myLibrary[i].title.toLowerCase()) {
+                    searchLibrary.push(myLibrary[i]);
+                    rebuildTable();
+                    updateTable(searchLibrary);
+                }
+            };
+        
+            if (search === '') {
+                rebuildTable();
+                updateTable(myLibrary);
+                searchLibrary = [];
+            }
         };
 };
 
-updateTable();
+// search bar function
+// function performSearch() {
+//     const thisSearch = document.querySelector('.search');
+//     let search = thisSearch.value.toLowerCase();
+//     let searchLibrary = [];
+
+//     for (let i = 0; i < myLibrary.length; i++) {
+//         if (search === myLibrary[i].title.toLowerCase()) {
+//             searchLibrary.push(myLibrary[i]);
+//             rebuildTable();
+//             updateTable(searchLibrary);
+//         }
+//     };
+
+//     if (search === '') {
+//         rebuildTable();
+//         updateTable(myLibrary);
+//         searchLibrary = [];
+//     }
+// };
+
+updateTable(myLibrary);
 
 // button to open form to submit new book information to our library
 const formMenu = document.querySelector('dialog');
@@ -159,7 +216,7 @@ addBookBtn.addEventListener('click', () => {
     } else {
         addBookToLibrary(title.value, author.value, read);
         rebuildTable();
-        updateTable();
+        updateTable(myLibrary);
 
         title.value = '';
         author.value = '';
@@ -206,11 +263,11 @@ function rebuildTable() {
 };
 
 // search functionality
-const searchBar = document.querySelector('.search');
+// const searchBar = document.querySelector('.search');
 
-searchBar.addEventListener('input', () => {
-    let search = searchBar.value;
-    console.log(search);
+// searchBar.addEventListener('input', () => {
+//     let search = searchBar.value;
+//     console.log(search);
 
-    let findBook = myLibrary.filter
-});
+//     let findBook = myLibrary.filter
+// });
