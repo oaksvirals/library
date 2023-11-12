@@ -36,6 +36,10 @@ function updateTable() {
         const changeStatusButtonTd = document.createElement('td');
         const removeButton = document.createElement('button');
         const changeStatusButton = document.createElement('button');
+
+        // update search bar with book total
+        const search = document.querySelector('.search');
+        search.setAttribute('placeholder', 'Search through your library of ' + myLibrary.length + ' books...');
     
         // create new row
         selectBookList.appendChild(makeTr);
@@ -195,3 +199,13 @@ function rebuildTable() {
 
     tbody.setAttribute('class', 'book-list');
 };
+
+// search functionality
+const searchBar = document.querySelector('.search');
+
+searchBar.addEventListener('input', () => {
+    let search = searchBar.value;
+    console.log(search);
+
+    let findBook = myLibrary.filter
+});
