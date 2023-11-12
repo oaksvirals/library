@@ -23,7 +23,7 @@ body {
     /* border: 1px solid red; */
     background: var(--white);
     width: 1120px;
-    height: 100vw;
+    height: 100lvh;
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -210,4 +210,22 @@ form button {
 
 form legend, form label {
     font-weight: bold;
+}
+
+.footer {
+    position: sticky;
+    grid-column: 1 / -1;
+    grid-row: 13 / -1;
+    align-items: center;
+    width: fit-content;
+    place-self: center;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+}
+
+.footer svg {
+    width: 32px;
 }

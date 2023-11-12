@@ -135,6 +135,14 @@ function updateTable(array) {
                 searchLibrary = [];
             }
         };
+
+        // hide footer for long tables
+        const footer = document.querySelector('.footer');
+        if (myLibrary.length >= 5) {
+            footer.style.visibility = 'hidden';
+        } else {
+            footer.style.visibility = 'visible';
+        };
 };
 
 updateTable(myLibrary);
