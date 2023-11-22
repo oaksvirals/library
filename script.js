@@ -1,17 +1,35 @@
 const myLibrary = [];
 
-function Book(title, author, status) {
-    this.title = title;
-    this.author = author;
-    this.status = status;
-};
+// function Book(title, author, status) {
+//     this.title = title;
+//     this.author = author;
+//     this.status = status;
+// };
 
-Book.prototype.changeStatus = function() {
-    if (this.status === 'Read') {
-        this.status = 'Not Read';
-    } else if (this.status === 'Not Read') {
-        this.status = 'Read'
-    };
+// Book.prototype.changeStatus = function() {
+//     if (this.status === 'Read') {
+//         this.status = 'Not Read';
+//     } else if (this.status === 'Not Read') {
+//         this.status = 'Read'
+//     };
+// };
+
+
+// Refactored above code into a Class per Odin Lesson
+class Book {
+    constructor(title, author, status) {
+        this.title = title;
+        this.author = author;
+        this.status = status;
+    }
+
+    changeStatus() {
+        if (this.status === 'Read') {
+            this.status = 'Not Read';
+        } else if (this.status === 'Not Read') {
+            this.status = 'Read'
+        };
+    }
 };
 
 const addBookToLibrary = (title, author, status) => myLibrary.unshift(new Book(title, author, status));
